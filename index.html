@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <link rel="stylesheet" href="/public/css/style.css"/>
+    <title>Canvas Gravity</title>
+    <link rel="icon" href="/public/images/favicon.svg"/>
+    <script src="https://kit.fontawesome.com/643e1e523e.js" crossorigin="anonymous"></script>
+</head>
+<body class="bg-gray-800">
+
+<!--show controls button-->
+<div id="show-controls-button" class="mx-5 mt-5 absolute hidden">
+    <div class="text-white/50 hover:text-white hover:cursor-pointer active:text-white/50">
+        <i class="fa-regular fa-circle-right w-10 h-10"></i>
+    </div>
+</div>
+<div class="flex flex-row">
+    <!--    controls container-->
+    <div id="controls-container"
+         class="w-96 px-4 flex-none h-[100vh] bg-gradient-to-b from-blue-300 to-blue-700 rounded-tr-3xl rounded-br-3xl flex flex-col gap-6 overflow-y-scroll no-scrollbar select-none">
+        <!-- hide controls button-->
+        <div id="hide-controls-button" class="mx-5 mt-5 flex justify-end">
+            <div class="w-full flex justify-center">
+                <span class="text-3xl text-black/70 font-semibold">
+                    GRAVITY
+                </span>
+            </div>
+            <div class="text-black/50 hover:text-black/80 hover:cursor-pointer active:text-black/20">
+                <i class="fa-regular fa-circle-left w-10 h-10"></i>
+            </div>
+        </div>
+
+        <!--particles quantity box-->
+        <div id="particles-box" class="mx-5 bg-gray-700 rounded-xl shadows">
+            <div class="px-5 py-4 flex flex-col gap-4">
+                <div>
+                    <h1 class="text-white text-center text-lg font-semibold">Particles</h1>
+                </div>
+                <div id="particle-flow-container" class="flex flex-row gap-8">
+                    <div class="text-base text-white">
+                        <input id="auto-checkbox" checked type="radio" data-particle-flow="auto"
+                               name="particle-type-selection">
+                        <label for="auto-checkbox" class="ml-2">Auto</label>
+                    </div>
+                    <div class="ml-10 text-base text-white">
+                        <input id="manual-checkbox" type="radio" data-particle-flow="manual"
+                               name="particle-type-selection">
+                        <label for="manual-checkbox" class="ml-2">Manual</label>
+                    </div>
+                </div>
+                <div class="text-base text-white flex">
+                    <label for="particles-size-slider" class="flex-auto">Size</label>
+                    <input id="particles-size-slider" class="w-40" type="range" min="1" max="10" value="5">
+                </div>
+                <div class="text-base text-white flex">
+                    <label for="particle-color-picker" class="flex-1">Color</label>
+                    <input id="particle-color-picker" class="flex-auto rounded-md p-0.5" type="color" value="#00FFFF">
+                </div>
+                <div class="text-base text-white flex">
+                    <label for="gravity-slider" class="flex-auto">Gravity</label>
+                    <input id="gravity-slider" class="w-40 appearance-none rounded-xl bg-gray-800 px-1" type="range"
+                           min="-5" max="5" value="5">
+                </div>
+            </div>
+        </div>
+
+        <!--bouncing box-->
+        <div id="bouncing-box" class="mx-5 bg-gray-700 rounded-xl shadows">
+            <div class="px-5 py-4 flex flex-col gap-4">
+                <div>
+                    <h1 class="text-white text-center text-lg font-semibold">Bouncing</h1>
+                </div>
+                <div class="text-base text-white">
+                    <input id="bouncing-checkbox" type="checkbox">
+                    <label for="bouncing-checkbox" class="ml-2">Enable</label>
+                </div>
+                <div id="elasticity-container" class="disable flex flex-col gap-4">
+                    <div  class="text-base text-white flex">
+                        <label for="elasticity-slider" class="flex-auto">Elasticity</label>
+                        <input id="elasticity-slider" class="w-40" type="range" min="0" max="10" value="8">
+                    </div>
+                    <div class="text-base text-white flex">
+                        <label for="reduction-rate-slider" class="flex-auto">Reduction</label>
+                        <input id="reduction-rate-slider" class="w-40" type="range" min="1.1" max="5" value="2">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--explosion box-->
+        <div id="explosion-box" class="mx-5 bg-gray-700 rounded-xl shadows disable">
+            <div class="px-5 py-4 flex flex-col gap-4">
+                <div>
+                    <h1 class="text-white text-center text-lg font-semibold">Explosion</h1>
+                </div>
+                <div class="text-base text-white">
+                    <input id="explosion-checkbox" type="checkbox">
+                    <label for="explosion-checkbox" class="ml-2">Enable</label>
+                </div>
+                <div id="explosion-container" class="flex flex-col gap-3 disable">
+                    <div class="text-base text-white flex">
+                        <label for="explosion-radius-slider" class="flex-auto">Radius</label>
+                        <input id="explosion-radius-slider" class="w-40" type="range" min="1" max="10" value="3">
+                    </div>
+                    <div class="text-base text-white flex">
+                        <label for="explosives-color-picker" class="flex-1">Color</label>
+                        <input id="explosives-color-picker" class="flex-auto rounded-md p-0.5" type="color"
+                               value="#FFFF00">
+                    </div>
+                    <div class="text-base text-white mt-5">
+                        <input id="electrify-checkbox" type="checkbox">
+                        <label for="electrify-checkbox" class="ml-2">Electrify</label>
+                    </div>
+                    <div id="electrify-container" class="text-base text-white flex disable">
+                        <label for="electrify-amount-slider" class="flex-auto">Amount</label>
+                        <input id="electrify-amount-slider" class="w-40" type="range" min="1" max="10" value="3">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--  shadow box-->
+        <div id="shadow-box" class="mx-5 mb-10 bg-gray-700 rounded-xl shadows">
+            <div class="px-5 py-4 flex flex-col gap-4">
+                <div>
+                    <h1 class="text-white text-center text-lg font-semibold">Shadow</h1>
+                </div>
+                <div  class="flex flex-col gap-2">
+                    <div class="text-base text-white">
+                        <input id="particle-shadow-checkbox" type="checkbox">
+                        <label for="particle-shadow-checkbox" class="ml-2">Particle Shadow</label>
+                    </div>
+                    <div id="particle-shadow-slider-container" class="text-base text-white flex disable">
+                        <label for="particle-shadow-slider" class="flex-auto">Amount</label>
+                        <input id="particle-shadow-slider" class="w-40" type="range" min="0" max="10" value="0">
+                    </div>
+                </div>
+                <div id="explosive-shadow-container" class="flex flex-col gap-2 disable">
+                    <div class="text-base text-white mt-5">
+                        <input id="explosive-shadow-checkbox" type="checkbox">
+                        <label for="explosive-shadow-checkbox" class="ml-2">Explosives Shadow</label>
+                    </div>
+                    <div id="explosive-shadow-slider-container" class="text-base text-white flex disable">
+                        <label for="explosive-shadow-slider" class="flex-auto">Amount</label>
+                        <input id="explosive-shadow-slider" class="w-40" type="range" min="0" max="10" value="0">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="canvas-container" class="w-full h-[100vh]">
+        <canvas id="canvas" class="w-full h-full bg-gray-800"></canvas>
+    </div>
+</div>
+<script type="module" src="/src/controller.js"></script>
+</body>
+</html>
