@@ -20,13 +20,14 @@
     <div id="controls-container"
          class="w-96 px-4 flex-none h-[100vh] bg-gradient-to-b from-blue-300 to-blue-700 rounded-tr-3xl rounded-br-3xl flex flex-col gap-6 overflow-y-scroll no-scrollbar select-none">
         <!-- hide controls button-->
-        <div id="hide-controls-button" class="mx-5 mt-5 flex justify-end">
+        <div class="mx-5 mt-5 flex justify-end">
             <div class="w-full flex justify-center">
-                <span class="text-3xl text-black/70 font-semibold">
+                <span class="text-3xl text-black/60 font-semibold">
                     GRAVITY
                 </span>
             </div>
-            <div class="text-black/50 hover:text-black/80 hover:cursor-pointer active:text-black/20">
+            <div id="hide-controls-button"
+                 class="text-black/50 hover:text-black/80 hover:cursor-pointer active:text-black/20">
                 <i class="fa-regular fa-circle-left w-10 h-10"></i>
             </div>
         </div>
@@ -76,7 +77,7 @@
                     <label for="bouncing-checkbox" class="ml-2">Enable</label>
                 </div>
                 <div id="elasticity-container" class="disable flex flex-col gap-4">
-                    <div  class="text-base text-white flex">
+                    <div class="text-base text-white flex">
                         <label for="elasticity-slider" class="flex-auto">Elasticity</label>
                         <input id="elasticity-slider" class="w-40" type="range" min="0" max="10" value="8">
                     </div>
@@ -126,7 +127,7 @@
                 <div>
                     <h1 class="text-white text-center text-lg font-semibold">Shadow</h1>
                 </div>
-                <div  class="flex flex-col gap-2">
+                <div class="flex flex-col gap-2">
                     <div class="text-base text-white">
                         <input id="particle-shadow-checkbox" type="checkbox">
                         <label for="particle-shadow-checkbox" class="ml-2">Particle Shadow</label>
